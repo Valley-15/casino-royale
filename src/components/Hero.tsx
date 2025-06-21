@@ -1,6 +1,6 @@
 // components/Hero.tsx
 
-import { siteConfig } from "../../data/config";
+import { siteConfig } from "../data/config";
 
 export default function Hero() {
   const { name, tagline, cta } = siteConfig;
