@@ -52,8 +52,8 @@
 - **Email Address:** adnaan.2735@gmail.com  
 - **Contact Method:** Form via EmailJS (collect Name, Email, Message)  
 - **Social Icons:**  
-  - GitHub: `https://github.com/yourusername`  
-  - LinkedIn: `https://linkedin.com/in/yourusername`
+  - GitHub: `https://github.com/Valley-15`  
+  - LinkedIn: `https://www.linkedin.com/in/adnaan-ali1/`
 
 ## 7. Footer
 - **Footer Text:** © 2025 Adnaan Ali — Crafted with care using Next.js & Tailwind CSS

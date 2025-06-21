@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   email: "adnaan.2735@gmail.com",
   socialLinks: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
+    github: "https://github.com/Valley-15",
+    linkedin: "https://www.linkedin.com/in/adnaan-ali1/",
   },
 };
