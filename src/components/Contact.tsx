@@ -39,19 +39,18 @@ export default function Contact() {
   const { socialLinks } = siteConfig;
 
   return (
-    <section id="contact" className="py-16 bg-gray-100 px-4">
-      <div className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+    <section id="contact" className="py-16 bg-gray-50 px-4">
+      <div className="max-w-xl mx-auto bg-gray-100 p-8 rounded-2xl shadow-lg">
         {/* Poetic Header */}
         <h2 className="text-3xl font-semibold mb-2 text-gray-900 text-center">
           Whisper Through the Wire
         </h2>
-        <p className="text-gray-600 mb-6 text-center">
-          Got a spark in mind or just a greeting to share? Pen your thoughts
-          below.
+        <p className="text-gray-700 mb-6 text-center">
+          If you’ve carried a thought this far, let it rest here.
         </p>
 
         <form ref={formRef} onSubmit={onSubmit} className="space-y-4">
-          {/* Hidden time field to satisfy {{time}} in your template */}
+          {/* Hidden time field to satisfy {{time}} */}
           <input type="hidden" name="time" value={timestamp} />
 
           {/* Name field */}
@@ -62,11 +61,11 @@ export default function Contact() {
             required
             className="
               w-full px-4 py-3
-              bg-blue-50 text-gray-900
-              border border-blue-100
+              bg-gray-200 text-gray-900
+              border border-gray-300
               rounded-lg
               placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
             "
           />
 
@@ -77,11 +76,11 @@ export default function Contact() {
             placeholder="Where shall I write back?"
             className="
               w-full px-4 py-3
-              bg-blue-50 text-gray-900
-              border border-blue-100
+              bg-gray-200 text-gray-900
+              border border-gray-300
               rounded-lg
               placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
             "
           />
 
@@ -93,11 +92,11 @@ export default function Contact() {
             required
             className="
               w-full px-4 py-3
-              bg-blue-50 text-gray-900
-              border border-blue-100
+              bg-gray-200 text-gray-900
+              border border-gray-300
               rounded-lg
               placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
             "
           />
 
@@ -107,10 +106,10 @@ export default function Contact() {
             disabled={status === "sending"}
             className="
               w-full py-3
-              bg-blue-600 text-white font-medium
+              bg-gray-800 text-gray-100 font-medium
               rounded-lg
-              hover:bg-blue-700
-              focus:outline-none focus:ring-2 focus:ring-blue-400
+              hover:bg-gray-700
+              focus:outline-none focus:ring-2 focus:ring-gray-500
               disabled:opacity-50 disabled:cursor-not-allowed
               transition
             "

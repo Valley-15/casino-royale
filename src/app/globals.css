@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+nav a.active {
+  border-bottom: 2px solid white;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

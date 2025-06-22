@@ -1,26 +1,75 @@
-// components/About.tsx
-
 import { siteConfig } from "../data/config";
+
+const styles = {
+  section: {
+    minHeight: "100vh", // cover the full viewport
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "2rem 1rem",
+    backgroundColor: "#0B0B0B", // soft on the eyes
+    color: "#E5E5E5", // gentle off-white
+  },
+  container: {
+    width: "100%",
+    maxWidth: "800px",
+    backgroundColor: "#1A1A1A", // card-style dark gray
+    padding: "2.5rem",
+    borderRadius: "0.75rem",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
+  },
+  title: {
+    fontSize: "2.5rem",
+    fontWeight: 700,
+    marginBottom: "0.5rem",
+    color: "#FFFFFF", // pure white for impact
+  },
+  subtitle: {
+    fontSize: "1.25rem",
+    fontStyle: "italic" as const,
+    color: "#BBBBBB", // a touch lighter
+    marginBottom: "2rem",
+  },
+  text: {
+    fontSize: "1rem",
+    lineHeight: 1.6,
+    marginBottom: "2.5rem",
+  },
+  badgeContainer: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: "0.75rem",
+  },
+  badge: {
+    border: "1px solid #E5E5E5",
+    borderRadius: "999px",
+    padding: "0.4rem 1rem",
+    fontSize: "0.875rem",
+    color: "#E5E5E5",
+  },
+};
 
 export default function About() {
   const { bio, skills } = siteConfig;
 
   return (
-    <section id="about" className="py-16 bg-white px-4">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-semibold mb-4 text-gray-900">About Me</h2>
-        <p className="mb-6 text-gray-700 leading-relaxed">{bio}</p>
-        <h3 className="text-2xl font-medium mb-2 text-gray-900">Skills</h3>
-        <ul className="flex flex-wrap gap-2">
+    <section id="about" style={styles.section}>
+      <div style={styles.container}>
+        <h2 style={styles.title}>Reflections in Code</h2>
+        <p style={styles.subtitle}>
+          Every line whispers a fragment of a journey.
+        </p>
+
+        <p style={styles.text}>{bio}</p>
+
+        <h3 style={styles.title}>Arsenal of Creation</h3>
+        <div style={styles.badgeContainer}>
           {skills.map((skill) => (
-            <li
-              key={skill}
-              className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
-            >
+            <span key={skill} style={styles.badge}>
               {skill}
-            </li>
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

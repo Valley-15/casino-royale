@@ -1,9 +1,10 @@
-import React from 'react'
+import { siteConfig } from "../data/config";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div>Footer</div>
-  )
+    <footer className="py-6 bg-white text-center text-gray-500 text-sm">
+      © {new Date().getFullYear()} {siteConfig.name} — Flowing, grounded,
+      enduring.
+    </footer>
+  );
 }
-
-export default Footer
