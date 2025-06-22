@@ -4,6 +4,16 @@ html {
   scroll-behavior: smooth;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 /* ensure all anchor-scrolls land 64px below the fixed navbar */
 html {
   scroll-padding-top: 64px;
