@@ -1,151 +1,62 @@
+// src/components/Projects.tsx
 "use client";
 import { projects } from "../data/projects";
-import { CSSProperties } from "react";
-
-const NAV_HEIGHT = 64;
-
-const styles: Record<string, CSSProperties> = {
-  section: {
-    /* own the screen below the navbar */
-    minHeight: `calc(100vh - ${NAV_HEIGHT}px)`,
-    scrollMarginTop: `${NAV_HEIGHT}px`,
-    padding: "3rem 2rem",
-    backgroundColor: "#0B0B0B",
-    color: "#E5E5E5",
-  },
-  container: {
-    maxWidth: "900px",
-    margin: "0 auto",
-    backgroundColor: "#1A1A1A",
-    padding: "2rem",
-    borderRadius: "1.5rem",
-    boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
-    textAlign: "center",
-  },
-  heading: {
-    fontSize: "2.5rem",
-    fontWeight: 700,
-    marginBottom: "0.25rem",
-    color: "#FFFFFF",
-  },
-  subtitle: {
-    fontSize: "1.2rem",
-    fontStyle: "italic",
-    color: "#CCCCCC",
-    marginBottom: "2rem",
-  },
-  grid: {
-    display: "grid",
-    gap: "1.5rem",
-    justifyItems: "center",
-  },
-  card: {
-    width: "100%",
-    maxWidth: "400px",
-    backgroundColor: "#0B0B0B",
-    border: "1px solid #E5E5E5",
-    borderRadius: "1rem",
-    padding: "1.5rem",
-    transition: "box-shadow 0.2s, transform 0.2s",
-    cursor: "default",
-  },
-  cardHover: {
-    boxShadow: "0 0 15px rgba(255,255,255,0.2)",
-    transform: "translateY(-4px)",
-  },
-  title: {
-    fontSize: "1.25rem",
-    fontWeight: 600,
-    marginBottom: "0.75rem",
-    color: "#FFFFFF",
-  },
-  desc: {
-    color: "#DDDDDD",
-    marginBottom: "1rem",
-    fontSize: "0.95rem",
-  },
-  techList: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "0.5rem",
-    marginBottom: "1.5rem",
-    justifyContent: "center",
-  },
-  techItem: {
-    border: "1px solid #E5E5E5",
-    borderRadius: "999px",
-    padding: "0.3rem 0.75rem",
-    fontSize: "0.85rem",
-    color: "#E5E5E5",
-  },
-  links: {
-    display: "flex",
-    gap: "1rem",
-    justifyContent: "center",
-  },
-  link: {
-    color: "#E5E5E5",
-    textDecoration: "underline",
-    cursor: "pointer",
-    fontSize: "0.9rem",
-  },
-};
 
 export default function Projects() {
-  const count = projects.length;
-  const cols = count >= 3 ? count : 2;
-
   return (
-    <section id="projects" style={styles.section}>
-      <div style={styles.container}>
-        <h2 style={styles.heading}>Creations</h2>
-        <p style={styles.subtitle}>A gallery where code meets craft.</p>
+    <section
+      id="projects"
+      className="
+        bg-[#0B0B0B] text-[#E5E5E5]
+        px-4 py-8
+        md:px-8 md:py-12
+        md:min-h-[calc(100vh-64px)] md:scroll-mt-16
+      "
+    >
+      <div className="max-w-4xl mx-auto bg-[#1A1A1A] p-8 rounded-2xl shadow-lg text-center">
+        <h2 className="text-4xl font-bold mb-2 text-white">Creations</h2>
+        <p className="text-xl italic text-[#CCCCCC] mb-6">
+          A gallery where code meets craft.
+        </p>
 
-        <div
-          style={{
-            ...styles.grid,
-            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-          }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {projects.map((p, i) => (
             <div
               key={i}
-              style={styles.card}
-              onMouseEnter={(e) =>
-                Object.assign(
-                  (e.currentTarget as HTMLElement).style,
-                  styles.cardHover
-                )
-              }
-              onMouseLeave={(e) =>
-                Object.assign((e.currentTarget as HTMLElement).style, {
-                  boxShadow: "none",
-                  transform: "none",
-                })
-              }
+              className="
+                bg-[#0B0B0B] border border-[#E5E5E5]
+                rounded-lg p-6
+                transition-transform duration-200
+                hover:shadow-lg hover:scale-[1.02]
+              "
             >
-              <h3 style={styles.title}>{p.title || `Project ${i + 1}`}</h3>
-              <p style={styles.desc}>
+              <h3 className="text-2xl font-semibold mb-2 text-white">
+                {p.title || `Project ${i + 1}`}
+              </h3>
+              <p className="text-base text-[#DDDDDD] mb-4">
                 {p.description || "Details unfolding soon."}
               </p>
-              <div style={styles.techList}>
+
+              <div className="flex flex-wrap gap-2 justify-center mb-4">
                 {p.tech.length > 0 ? (
                   p.tech.map((t) => (
-                    <span key={t} style={styles.techItem}>
+                    <span
+                      key={t}
+                      className="px-3 py-1 border border-[#E5E5E5] rounded-full text-sm"
+                    >
                       {t}
                     </span>
                   ))
                 ) : (
-                  <span style={{ color: "#777", fontSize: "0.85rem" }}>
-                    Tech TBD
-                  </span>
+                  <span className="text-[#777] text-sm">Tech TBD</span>
                 )}
               </div>
-              <div style={styles.links}>
-                <a href={p.demo || "#"} style={styles.link}>
+
+              <div className="flex gap-4 justify-center">
+                <a href={p.demo || "#"} className="underline">
                   Experience →
                 </a>
-                <a href={p.github || "#"} style={styles.link}>
+                <a href={p.github || "#"} className="underline">
                   Inspect →
                 </a>
               </div>

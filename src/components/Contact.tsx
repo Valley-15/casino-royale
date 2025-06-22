@@ -1,9 +1,8 @@
-// components/Contact.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, ArrowRight } from "lucide-react";
 import { siteConfig } from "../data/config";
 
 export default function Contact() {
@@ -13,7 +12,6 @@ export default function Contact() {
   );
   const [timestamp, setTimestamp] = useState("");
 
-  // Generate timestamp once on mount
   useEffect(() => {
     setTimestamp(new Date().toLocaleString());
   }, []);
@@ -21,7 +19,6 @@ export default function Contact() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
-
     setStatus("sending");
     emailjs
       .sendForm(
@@ -39,99 +36,117 @@ export default function Contact() {
   const { socialLinks } = siteConfig;
 
   return (
-    <section id="contact" className="py-16 bg-gray-50 px-4">
-      <div className="max-w-xl mx-auto bg-gray-100 p-8 rounded-2xl shadow-lg">
-        {/* Poetic Header */}
-        <h2 className="text-3xl font-semibold mb-2 text-gray-900 text-center">
-          Whisper Through the Wire
+    <section
+      id="contact"
+      className="
+        bg-[#0B0B0B] text-[#E5E5E5]
+        px-4 sm:px-6 lg:px-8
+        py-4
+      "
+    >
+      <div
+        className="
+        max-w-xl mx-auto
+        bg-[#1A1A1A] p-6
+        rounded-2xl shadow-lg
+      "
+      >
+        <h2 className="text-3xl font-semibold mb-2 text-white text-center">
+          Where Silence Listens
         </h2>
-        <p className="text-gray-700 mb-6 text-center">
+        <p className="text-[#CCCCCC] mb-6 text-center">
           If you’ve carried a thought this far, let it rest here.
         </p>
 
         <form ref={formRef} onSubmit={onSubmit} className="space-y-4">
-          {/* Hidden time field to satisfy {{time}} */}
           <input type="hidden" name="time" value={timestamp} />
 
-          {/* Name field */}
           <input
             type="text"
             name="name"
-            placeholder="Tell me your name, traveler..."
+            placeholder="The name behind the silence?"
             required
             className="
               w-full px-4 py-3
-              bg-gray-200 text-gray-900
-              border border-gray-300
+              bg-[#1A1A1A] text-[#E5E5E5]
+              border border-[#333333]
               rounded-lg
-              placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
+              placeholder-[#CCCCCC]
+              focus:outline-none focus:ring-2 focus:ring-[#333333]
+              hover:bg-[#282828]
+              transition-colors duration-200
             "
           />
 
-          {/* Email field */}
           <input
             type="email"
             name="email"
-            placeholder="Where shall I write back?"
+            placeholder="Where shall the winds return the word?"
             className="
               w-full px-4 py-3
-              bg-gray-200 text-gray-900
-              border border-gray-300
+              bg-[#1A1A1A] text-[#E5E5E5]
+              border border-[#333333]
               rounded-lg
-              placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
+              placeholder-[#CCCCCC]
+              focus:outline-none focus:ring-2 focus:ring-[#333333]
+              hover:bg-[#282828]
+              transition-colors duration-200
             "
           />
 
-          {/* Message field */}
           <textarea
             name="message"
-            placeholder="Let your words drift here..."
+            placeholder="Let the silence speak through you..."
             rows={5}
             required
             className="
               w-full px-4 py-3
-              bg-gray-200 text-gray-900
-              border border-gray-300
+              bg-[#1A1A1A] text-[#E5E5E5]
+              border border-[#333333]
               rounded-lg
-              placeholder-gray-500
-              focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent
+              placeholder-[#CCCCCC]
+              focus:outline-none focus:ring-2 focus:ring-[#333333]
+              hover:bg-[#282828]
+              transition-colors duration-200
             "
           />
 
-          {/* Submit button with poetic feedback */}
           <button
             type="submit"
             disabled={status === "sending"}
             className="
-              w-full py-3
-              bg-gray-800 text-gray-100 font-medium
+              w-full flex items-center justify-center space-x-2
+              py-3
+              bg-transparent
+              border border-[#E5E5E5]
+              text-[#E5E5E5] font-medium
               rounded-lg
-              hover:bg-gray-700
-              focus:outline-none focus:ring-2 focus:ring-gray-500
+              hover:bg-[#333333]
+              focus:outline-none focus:ring-2 focus:ring-[#555555]
               disabled:opacity-50 disabled:cursor-not-allowed
-              transition
+              cursor-pointer transition
             "
           >
-            {status === "sending"
-              ? "Letting it fly..."
-              : status === "sent"
-              ? "Message delivered like a secret note."
-              : status === "error"
-              ? "Something broke the rhythm. Try again."
-              : "Send a Signal"}
+            <span>
+              {status === "sending"
+                ? "Sending it through silence..."
+                : status === "sent"
+                ? "It now echoes where only quiet listens."
+                : status === "error"
+                ? "Something stilled its journey. Try again?"
+                : "Release it to the quiet..."}
+            </span>
+            <ArrowRight size={20} />
           </button>
         </form>
 
-        {/* Social Icons */}
-        <div className="mt-8 flex justify-center space-x-6 text-gray-600">
+        <div className="mt-6 flex justify-center space-x-6 text-[#CCCCCC]">
           <a
             href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hover:text-gray-800 transition"
+            className="transition transform hover:scale-110 hover:text-white"
           >
             <Github size={28} />
           </a>
@@ -140,7 +155,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="hover:text-gray-800 transition"
+            className="transition transform hover:scale-110 hover:text-white"
           >
             <Linkedin size={28} />
           </a>

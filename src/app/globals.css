@@ -4,6 +4,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ensure all anchor-scrolls land 64px below the fixed navbar */
+html {
+  scroll-padding-top: 64px;
+}
+
 nav a.active {
   border-bottom: 2px solid white;
 }
@@ -31,4 +36,41 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --------------------------------
+   1. Responsive Projects grid
+---------------------------------*/
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+@media (min-width: 640px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------
+   2. Allow navbar to scroll on narrow screens
+---------------------------------*/
+@media (max-width: 640px) {
+  nav>div {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  nav>div a {
+    display: inline-block;
+    flex: none;
+  }
 }

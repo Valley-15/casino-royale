@@ -1,47 +1,10 @@
-
+// components/Navbar.tsx
 "use client";
-import { useEffect, useState } from "react";
 
-const NAV_HEIGHT = 64; // px
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
-const styles = {
-  bar: {
-    position: "fixed" as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    height: `${NAV_HEIGHT}px`,
-    backgroundColor: "rgba(0,0,0,0.95)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "0 1rem",
-    zIndex: 1000,
-  },
-  container: {
-    display: "flex",
-    gap: "2rem",
-  },
-  link: {
-    color: "#fff",
-    textTransform: "uppercase" as const,
-    letterSpacing: "0.1em",
-    fontSize: "0.9rem",
-    textDecoration: "none",
-    position: "relative" as const,
-    lineHeight: `${NAV_HEIGHT}px`,
-  },
-  activeUnderline: {
-    position: "absolute" as const,
-    bottom: "8px",
-    left: 0,
-    right: 0,
-    height: "2px",
-    backgroundColor: "#fff",
-  },
-};
-
-const navItems = [
+const NAV_ITEMS = [
   { id: "hero", label: "THE BEGINNING" },
   { id: "about", label: "MY PLACE" },
   { id: "projects", label: "MADE, NOT FOUND" },
@@ -50,33 +13,79 @@ const navItems = [
 
 export default function Navbar() {
   const [active, setActive] = useState<string>("hero");
+  const [open, setOpen] = useState<boolean>(false);
 
+  // track which section is in view
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
+        entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
       },
       { threshold: 0.6 }
     );
-    navItems.forEach((item) => {
-      const sec = document.getElementById(item.id);
+    NAV_ITEMS.forEach(({ id }) => {
+      const sec = document.getElementById(id);
       if (sec) obs.observe(sec);
     });
     return () => obs.disconnect();
   }, []);
 
   return (
-    <nav style={styles.bar}>
-      <div style={styles.container}>
-        {navItems.map((nav) => (
-          <a key={nav.id} href={`#${nav.id}`} style={styles.link}>
-            {nav.label}
-            {active === nav.id && <span style={styles.activeUnderline} />}
-          </a>
-        ))}
+    <nav className="fixed inset-x-0 top-0 z-50 bg-black/95">
+      <div className="flex items-center justify-between h-16 px-4">
+        {/* Desktop links */}
+        <div className="hidden sm:flex space-x-8">
+          {NAV_ITEMS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={`
+                inline-block
+                uppercase text-sm tracking-wider text-white
+                pb-[2px] border-b-2 border-transparent
+                transition
+                ${
+                  active === id
+                    ? "border-white font-bold"
+                    : "font-medium hover:border-white"
+                }
+              `}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+
+        {/* Hamburger button */}
+        <button
+          className="sm:hidden text-white p-2"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? "Close menu" : "Open menu"}
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile off-canvas menu */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-8 sm:hidden"
+          onClick={() => setOpen(false)} // close on backdrop click
+        >
+          {NAV_ITEMS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={`
+                uppercase text-2xl tracking-wide text-white
+                ${active === id ? "font-bold" : "font-medium"}
+              `}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
