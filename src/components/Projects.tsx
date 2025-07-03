@@ -8,12 +8,13 @@ export default function Projects() {
       id="projects"
       className="
         bg-[#0B0B0B] text-[#E5E5E5]
-        px-4 py-8
-        md:px-8 md:py-12
-        md:min-h-[calc(100vh-64px)] md:scroll-mt-16
+        px-4 py-6
+        md:px-8 md:py-8
+        min-h-screen
+        flex items-center
       "
     >
-      <div className="max-w-4xl mx-auto bg-[#1A1A1A] p-8 rounded-2xl shadow-lg text-center">
+      <div className="max-w-4xl mx-auto bg-[#1A1A1A] p-6 rounded-2xl shadow-lg text-center">
         <h2 className="text-4xl font-bold mb-2 text-white">Creations</h2>
         <p className="text-xl italic text-[#CCCCCC] mb-6">
           A gallery where code meets craft.
@@ -53,11 +54,21 @@ export default function Projects() {
               </div>
 
               <div className="flex gap-4 justify-center">
-                <a href={p.demo || "#"} className="underline">
-                  Experience →
+                <a
+                  href={p.demo || "#"}
+                  className="px-4 py-1 rounded-full bg-[#222] text-white font-medium shadow hover:bg-[#333] transition-colors border border-[#444] focus:outline-none focus:ring-2 focus:ring-[#E5E5E5]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Experience
                 </a>
-                <a href={p.github || "#"} className="underline">
-                  Inspect →
+                <a
+                  href={p.github || "#"}
+                  className="px-4 py-1 rounded-full bg-[#222] text-white font-medium shadow hover:bg-[#333] transition-colors border border-[#444] focus:outline-none focus:ring-2 focus:ring-[#E5E5E5]"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Inspect
                 </a>
               </div>
             </div>
